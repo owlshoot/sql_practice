@@ -1,0 +1,77 @@
+#query to find the top 10 public schools where a 2 year degree costs over 10,000 USD
+
+SELECT name, state, type, degree_length, out_of_state_total FROM university.tuition_cost
+where degree_length = 2 and type = "public"
+group by name  
+having out_of_state_total >10000
+order by out_of_state_total desc
+limit 10;
+
++----------------------------------------------------------+---------------+--------+---------------+--------------------+
+| name                                                     | state         | type   | degree_length | out_of_state_total |
++----------------------------------------------------------+---------------+--------+---------------+--------------------+
+| Ohio State University Agricultural Technical Institute   | Ohio          | Public | 2 Year        |              36370 |
+| Richard Bland College                                    | Virginia      | Public | 2 Year        |              34014 |
+| University of Pittsburgh at Titusville                   | Pennsylvania  | Public | 2 Year        |              32528 |
+| SUNY College of Agriculture and Technology at Cobleskill | New York      | Public | 2 Year        |              31784 |
+| SUNY College of Technology at Canton                     | New York      | Public | 2 Year        |              31069 |
+| Lamar State College at Port Arthur                       | Texas         | Public | 2 Year        |              26190 |
+| Colorado Mountain College                                | Colorado      | Public | 2 Year        |              25548 |
+| NHTI-Concord's Community College                         | New Hampshire | Public | 2 Year        |              25002 |
+| SUNY College of Technology at Delhi                      | New York      | Public | 2 Year        |              24690 |
+| College of the Muscogee Nation                           | Oklahoma      | Public | 2 Year        |              24053 |
++----------------------------------------------------------+---------------+--------+---------------+--------------------+
+
+#query to find the top 20 universities where the percentage of Asians are the most.
+
+SELECT sp.rank, sp.name, ds.category, round((ds.enrollment/ds.total_enrollment)*100) as percent_minor FROM university.salary_potential sp
+left join university.diversity_school ds on sp.name = ds.name
+where category = "Asian"
+order by percent_minor desc
+limit 20;
++------+-----------------------------------------+----------+---------------+
+| rank | name                                    | category | percent_minor |
++------+-----------------------------------------+----------+---------------+
+|    6 | University of Hawaii-West Oahu          | Asian    |            37 |
+|   17 | San Jose State University               | Asian    |            32 |
+|    2 | Samuel Merritt University               | Asian    |            28 |
+|    3 | California Institute of Technology      | Asian    |            26 |
+|    4 | Chaminade University of Honolulu        | Asian    |            26 |
+|    4 | Lawrence Technological University       | Asian    |            23 |
+|   18 | Wellesley College                       | Asian    |            23 |
+|    6 | MCPHS University                        | Asian    |            21 |
+|    5 | University of Hawaii at Hilo            | Asian    |            21 |
+|    1 | Harvey Mudd College                     | Asian    |            21 |
+|    9 | University of Houston                   | Asian    |            20 |
+|    7 | University of Illinois at Chicago       | Asian    |            19 |
+|    6 | University of Maryland-Baltimore County | Asian    |            18 |
+|   11 | University of Southern California       | Asian    |            18 |
+|    3 | New Jersey Institute of Technology      | Asian    |            18 |
+|   23 | University of San Francisco             | Asian    |            18 |
+|   18 | Bellevue College                        | Asian    |            17 |
+|    1 | Rice University                         | Asian    |            17 |
+|    1 | Carnegie Mellon University              | Asian    |            16 |
+|    4 | Stanford University                     | Asian    |            16 |
++------+-----------------------------------------+----------+---------------+
+
+#Query to find the percentages of non-resident foreigners enrolled with the highest increase in salary from early career to mid career.
+SELECT sp.rank, sp.name, ds.category, round((ds.enrollment/ds.total_enrollment)*100) as percent_minor, round((early_career_pay/mid_career_pay)*100) as increase_salary FROM university.salary_potential sp
+left join university.diversity_school ds on sp.name = ds.name
+where category = "Non-Resident Foreign" 
+order by increase_salary desc
+limit 10;
+
++------+--------------------------------------+----------------------+---------------+-----------------+
+| rank | name                                 | category             | percent_minor | increase_salary |
++------+--------------------------------------+----------------------+---------------+-----------------+
+|   16 | Thomas Jefferson University          | Non-Resident Foreign |             4 |              62 |
+|    6 | Western Governors University         | Non-Resident Foreign |             0 |              60 |
+|   22 | Mount Mercy University               | Non-Resident Foreign |             3 |              60 |
+|   19 | Tennessee State University           | Non-Resident Foreign |            10 |              60 |
+|    1 | Oregon Health & Science University   | Non-Resident Foreign |             2 |              60 |
+|    7 | Minot State University               | Non-Resident Foreign |            12 |              60 |
+|   23 | Eastern Oregon University            | Non-Resident Foreign |             1 |              60 |
+|   15 | Bluefield State College              | Non-Resident Foreign |             2 |              59 |
+|    5 | Medical University of South Carolina | Non-Resident Foreign |             2 |              59 |
+|    2 | Samuel Merritt University            | Non-Resident Foreign |             1 |              59 |
++------+--------------------------------------+----------------------+---------------+-----------------+
