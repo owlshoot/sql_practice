@@ -97,3 +97,22 @@ limit 10;
 | Curtis Institute of Music              |       20742 | 2013 |       12996 | 75,001 to 110,000 | Asian    |               18 |
 | Bellevue College                       |       20584 | 2018 | 11480.13211 | 75,001 to 110,000 | Asian    |               17 |
 +----------------------------------------+-------------+------+-------------+-------------------+----------+------------------+
+
+#Query to find the top four women colleges, its costs, and type
+SELECT t.*, d.category, round((d.enrollment/d.total_enrollment)*100) as percent_FE FROM university.tuition_cost t
+join university.diversity_school d on t.name = d.name
+group by t.name
+having category = "women" and type = "private"
+order by percent_FE desc
+limit 4;
++-----------------------+---------------+------------+---------+---------------+----------------+------------------+----------------+----------------------+--------------------+----------+------------+
+| name                  | state         | state_code | type    | degree_length | room_and_board | in_state_tuition | in_state_total | out_of_state_tuition | out_of_state_total | category | percent_FE |
++-----------------------+---------------+------------+---------+---------------+----------------+------------------+----------------+----------------------+--------------------+----------+------------+
+| Barnard College       | New York      | NY         | Private | 4 Year        | 17225          |            55032 |          72257 |                55032 |              72257 | Women    |        100 |
+| Mount Holyoke College | Massachusetts | MA         | Private | 4 Year        | 14660          |            49998 |          64658 |                49998 |              64658 | Women    |        100 |
+| Spelman College       | Georgia       | GA         | Private | 4 Year        | 13865          |            29314 |          43179 |                29314 |              43179 | Women    |        100 |
+| Cottey College        | Missouri      | MO         | Private | 4 Year        | 7700           |            21150 |          28850 |                21150 |              28850 | Women    |        100 |
++-----------------------+---------------+------------+---------+---------------+----------------+------------------+----------------+----------------------+--------------------+----------+------------+
+
+
+
