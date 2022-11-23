@@ -1,0 +1,28 @@
+#query to get row number for each row in the table historical_tuition
+
+SELECT *, row_number() over () as row_num FROM university.historical_tuition
+limit 20;
++------------------+---------+-----------------+--------------+---------+
+| type             | year    | tuition_type    | tuition_cost | row_num |
++------------------+---------+-----------------+--------------+---------+
+| All Institutions | 1985-86 | All Constant    |        10893 |       1 |
+| All Institutions | 1985-86 | 4 Year Constant |        12274 |       2 |
+| All Institutions | 1985-86 | 2 Year Constant |         7508 |       3 |
+| All Institutions | 1985-86 | All Current     |         4885 |       4 |
+| All Institutions | 1985-86 | 4 Year Current  |         5504 |       5 |
+| All Institutions | 1985-86 | 2 Year Current  |         3367 |       6 |
+| All Institutions | 1995-96 | All Constant    |        13822 |       7 |
+| All Institutions | 1995-96 | 4 Year Constant |        16224 |       8 |
+| All Institutions | 1995-96 | 2 Year Constant |         7421 |       9 |
+| All Institutions | 1995-96 | All Current     |         8800 |      10 |
+| All Institutions | 1995-96 | 4 Year Current  |        10330 |      11 |
+| All Institutions | 1995-96 | 2 Year Current  |         4725 |      12 |
+| All Institutions | 2000-01 | All Constant    |        14995 |      13 |
+| All Institutions | 2000-01 | 4 Year Constant |        17909 |      14 |
+| All Institutions | 2000-01 | 2 Year Constant |         7576 |      15 |
+| All Institutions | 2000-01 | All Current     |        10820 |      16 |
+| All Institutions | 2000-01 | 4 Year Current  |        12922 |      17 |
+| All Institutions | 2000-01 | 2 Year Current  |         5466 |      18 |
+| All Institutions | 2001-02 | All Constant    |        15497 |      19 |
+| All Institutions | 2001-02 | 4 Year Constant |        18573 |      20 |
++------------------+---------+-----------------+--------------+---------+
