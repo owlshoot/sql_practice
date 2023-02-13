@@ -352,3 +352,50 @@ group by continent;
 | Australia/Oceania |   25528864 |      19890 |              0.0008 |
 +-------------------+------------+------------+---------------------+
 
+#Query to find confirmed and death tolls by continent from March 2020 to July 2020 and the percentage of deaths
+
+SELECT extract(month from date) as month, 
+		count(c.country) as count_country, 
+       c.WHO_Region, 
+       sum(c.confirmed) as total_conf, 
+       sum(c.deaths) as total_deaths, 
+       (sum(c.deaths)/sum(c.confirmed))*100 as percentage_deaths
+FROM country_wise_latest c
+LEFT JOIN full_grouped f on f.country = c.country
+GROUP BY month, WHO_Region
+HAVING month >= 3
+ORDER BY month;
++-------+---------------+-----------------------+------------+--------------+-------------------+
+| month | count_country | WHO_Region            | total_conf | total_deaths | percentage_deaths |
++-------+---------------+-----------------------+------------+--------------+-------------------+
+|     3 |          1488 | Africa                |   22419417 |       378913 |            1.6901 |
+|     3 |          1085 | Americas              |  274017866 |     10624692 |            3.8774 |
+|     3 |           682 | Eastern Mediterranean |   46213064 |      1188509 |            2.5718 |
+|     3 |          1736 | Europe                |  102285213 |      6545464 |            6.3992 |
+|     3 |           310 | South-East Asia       |   56894207 |      1281819 |            2.2530 |
+|     3 |           496 | Western Pacific       |    9065268 |       255719 |            2.8209 |
+|     4 |          1440 | Africa                |   21696210 |       366690 |            1.6901 |
+|     4 |          1050 | Americas              |  265178580 |     10281960 |            3.8774 |
+|     4 |           660 | Eastern Mediterranean |   44722320 |      1150170 |            2.5718 |
+|     4 |          1680 | Europe                |   98985690 |      6334320 |            6.3992 |
+|     4 |           300 | South-East Asia       |   55058910 |      1240470 |            2.2530 |
+|     4 |           480 | Western Pacific       |    8772840 |       247470 |            2.8209 |
+|     5 |          1488 | Africa                |   22419417 |       378913 |            1.6901 |
+|     5 |          1085 | Americas              |  274017866 |     10624692 |            3.8774 |
+|     5 |           682 | Eastern Mediterranean |   46213064 |      1188509 |            2.5718 |
+|     5 |          1736 | Europe                |  102285213 |      6545464 |            6.3992 |
+|     5 |           310 | South-East Asia       |   56894207 |      1281819 |            2.2530 |
+|     5 |           496 | Western Pacific       |    9065268 |       255719 |            2.8209 |
+|     6 |          1440 | Africa                |   21696210 |       366690 |            1.6901 |
+|     6 |          1050 | Americas              |  265178580 |     10281960 |            3.8774 |
+|     6 |           660 | Eastern Mediterranean |   44722320 |      1150170 |            2.5718 |
+|     6 |          1680 | Europe                |   98985690 |      6334320 |            6.3992 |
+|     6 |           300 | South-East Asia       |   55058910 |      1240470 |            2.2530 |
+|     6 |           480 | Western Pacific       |    8772840 |       247470 |            2.8209 |
+|     7 |          1296 | Africa                |   19526589 |       330021 |            1.6901 |
+|     7 |           945 | Americas              |  238660722 |      9253764 |            3.8774 |
+|     7 |           594 | Eastern Mediterranean |   40250088 |      1035153 |            2.5718 |
+|     7 |          1512 | Europe                |   89087121 |      5700888 |            6.3992 |
+|     7 |           270 | South-East Asia       |   49553019 |      1116423 |            2.2530 |
+|     7 |           432 | Western Pacific       |    7895556 |       222723 |            2.8209 |
++-------+---------------+-----------------------+------------+--------------+-------------------+
