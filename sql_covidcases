@@ -336,3 +336,19 @@ From day_wise;
 | 2020-07-27 |  16480485 |        228689 |            1.4072 |
 +------------+-----------+---------------+-------------------+
 
+#Find the percentage of population infected by continent from jan - july 2020
+
+SELECT Continent, population, totalcases, totalcases/population as percentage_infected FROM covid.worldometer_data
+group by continent;
+
++-------------------+------------+------------+---------------------+
+| Continent         | population | totalcases | percentage_infected |
++-------------------+------------+------------+---------------------+
+| North America     |  331198130 |    5032179 |              0.0152 |
+| South America     |  212710692 |    2917562 |              0.0137 |
+| Asia              | 1381344997 |    2025409 |              0.0015 |
+| Europe            |  145940924 |     871894 |              0.0060 |
+| Africa            |   59381566 |     538184 |              0.0091 |
+| Australia/Oceania |   25528864 |      19890 |              0.0008 |
++-------------------+------------+------------+---------------------+
+
