@@ -72,4 +72,59 @@ The CTE first selects data from the table "university.diversity_school" and calc
 The SELECT statement is limited to records where the "category" is "Asian".
 The SELECT statement then selects all columns from the CTE and adds a column called "row_num" that gives a unique number to each row based on the "percent" column in descending order.
 
+#Query to find the top 20 schools that worth the price comparing the mid career salary and the tuition
 
+SELECT s.name, s.mid_career_pay, t.in_state_total, t.out_of_state_total, 
+  (Round(s.mid_career_pay/t.in_state_total)*100) as in_state_worth, 
+  (Round(s.mid_career_pay/t.out_of_state_total)*100) as out_state_worth, 
+  case 
+    when (Round(s.mid_career_pay/t.in_state_total)*100) <= 200 then 'yes'
+    else 'no'
+  end as in_state_worth_it, 
+  case 
+    when (Round(s.mid_career_pay/t.out_of_state_total)*100) <= 200 then 'yes'
+    else 'no'
+  end as out_state_worth_it
+FROM salary_potential s
+left join tuition_cost t on t.name = s.name
+order by mid_career_pay desc
+limit 20;
+
++------------------------------------------------+----------------+----------------+--------------------+----------------+-----------------+-------------------+--------------------+
+| name                                           | mid_career_pay | in_state_total | out_of_state_total | in_state_worth | out_state_worth | in_state_worth_it | out_state_worth_it |
++------------------------------------------------+----------------+----------------+--------------------+----------------+-----------------+-------------------+--------------------+
+| Harvey Mudd College                            |         158200 |          75003 |              75003 |            200 |
+200 | yes               | yes                |
+| Massachusetts Institute of Technology          |         155200 |          67342 |              67342 |            200 |
+200 | yes               | yes                |
+| Samuel Merritt University                      |         154100 |           NULL |               NULL |           NULL |            NULL | no                | no                 |
+| United States Naval Academy                    |         152800 |           NULL |               NULL |           NULL |            NULL | no                | no                 |
+| California Institute of Technology             |         151600 |          67887 |              67887 |            200 |
+200 | yes               | yes                |
+| Harvard University                             |         146800 |           NULL |               NULL |           NULL |            NULL | no                | no                 |
+| Stanford University                            |         145200 |          67117 |              67117 |            200 |
+200 | yes               | yes                |
+| Albany College of Pharmacy and Health Sciences |         144800 |          46025 |              46025 |            300 |
+300 | no                | no                 |
+| United States Military Academy                 |         144000 |           NULL |               NULL |           NULL |            NULL | no                | no                 |
+| SUNY Maritime College                          |         140700 |          20805 |              30585 |            700 |
+500 | no                | no                 |
+| United States Merchant Marine Academy          |         140700 |           NULL |               NULL |           NULL |            NULL | no                | no                 |
+| Stevens Institute of Technology                |         139900 |          67446 |              67446 |            200 |
+200 | yes               | yes                |
+| Colorado School of Mines                       |         139600 |          32133 |              51753 |            400 |
+300 | no                | no                 |
+| Princeton University                           |         139400 |          65620 |              65620 |            200 |
+200 | yes               | yes                |
+| Yale University                                |         138300 |          69430 |              69430 |            200 |
+200 | yes               | yes                |
+| United States Air Force Academy                |         138100 |           NULL |               NULL |           NULL |            NULL | no                | no                 |
+| Carnegie Mellon University                     |         136100 |          69883 |              69883 |            200 |
+200 | yes               | yes                |
+| Rose-Hulman Institute of Technology            |         135800 |          64637 |              64637 |            200 |
+200 | yes               | yes                |
+| Worcester Polytechnic Institute                |         135500 |          65304 |              65304 |            200 |
+200 | yes               | yes                |
+| Santa Clara University                         |         134700 |          66621 |              66621 |            200 |
+200 | yes               | yes                |
++------------------------------------------------+----------------+----------------+--------------------+----------------+-----------------+-------------------+--------------------+
