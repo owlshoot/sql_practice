@@ -22,37 +22,40 @@ limit 10;
 | College of the Muscogee Nation                           | Oklahoma      | Public | 2 Year        |              24053 |
 +----------------------------------------------------------+---------------+--------+---------------+--------------------+
 
-#query to find the top 20 universities where the percentage of Asians are the most.
+#query to find the top 20 universities where the percentage of Women are the most.
 
-SELECT sp.rank, sp.name, ds.category, round((ds.enrollment/ds.total_enrollment)*100) as percent_minor FROM university.salary_potential sp
-left join university.diversity_school ds on sp.name = ds.name
-where category = "Asian"
-order by percent_minor desc
-limit 20;
-+------+-----------------------------------------+----------+---------------+
-| rank | name                                    | category | percent_minor |
-+------+-----------------------------------------+----------+---------------+
-|    6 | University of Hawaii-West Oahu          | Asian    |            37 |
-|   17 | San Jose State University               | Asian    |            32 |
-|    2 | Samuel Merritt University               | Asian    |            28 |
-|    3 | California Institute of Technology      | Asian    |            26 |
-|    4 | Chaminade University of Honolulu        | Asian    |            26 |
-|    4 | Lawrence Technological University       | Asian    |            23 |
-|   18 | Wellesley College                       | Asian    |            23 |
-|    6 | MCPHS University                        | Asian    |            21 |
-|    5 | University of Hawaii at Hilo            | Asian    |            21 |
-|    1 | Harvey Mudd College                     | Asian    |            21 |
-|    9 | University of Houston                   | Asian    |            20 |
-|    7 | University of Illinois at Chicago       | Asian    |            19 |
-|    6 | University of Maryland-Baltimore County | Asian    |            18 |
-|   11 | University of Southern California       | Asian    |            18 |
-|    3 | New Jersey Institute of Technology      | Asian    |            18 |
-|   23 | University of San Francisco             | Asian    |            18 |
-|   18 | Bellevue College                        | Asian    |            17 |
-|    1 | Rice University                         | Asian    |            17 |
-|    1 | Carnegie Mellon University              | Asian    |            16 |
-|    4 | Stanford University                     | Asian    |            16 |
-+------+-----------------------------------------+----------+---------------+
+SELECT sp.rank, sp.name, ds.category, 
+  ROUND((ds.enrollment/ds.total_enrollment)*100) as percent_minor 
+FROM university.salary_potential sp
+LEFT JOIN university.diversity_school ds 
+  ON sp.name = ds.name
+WHERE category = "Women"
+ORDER BY percent_minor DESC
+LIMIT 20
++------+--------------------------------------+----------+---------------+
+| rank | name                                 | category | percent_minor |
++------+--------------------------------------+----------+---------------+
+|   10 | Spelman College                      | Women    |           100 |
+|   19 | Barnard College                      | Women    |           100 |
+|   15 | College of Saint Benedict            | Women    |           100 |
+|   14 | Agnes Scott College                  | Women    |            99 |
+|   14 | College of Saint Mary                | Women    |            98 |
+|   24 | Smith College                        | Women    |            98 |
+|   18 | Wellesley College                    | Women    |            97 |
+|   24 | Stephens College                     | Women    |            96 |
+|    6 | Bellin College                       | Women    |            93 |
+|   21 | Converse College                     | Women    |            92 |
+|    8 | Mount Carmel College of Nursing      | Women    |            90 |
+|   14 | University of Saint Joseph           | Women    |            89 |
+|    4 | Clarkson College                     | Women    |            88 |
+|   23 | Notre Dame of Maryland University    | Women    |            86 |
+|   18 | Lakeview College of Nursing          | Women    |            85 |
+|   10 | Mississippi University for Women     | Women    |            81 |
+|   11 | Jefferson College of Health Sciences | Women    |            80 |
+|   18 | Maryville University of Saint Louis  | Women    |            79 |
+|   22 | Southern University at New Orleans   | Women    |            76 |
+|   13 | Granite State College                | Women    |            74 |
++------+--------------------------------------+----------+---------------+
 
 #Query to find the percentages of non-resident foreigners enrolled with the highest increase in salary from early career to mid career.
 SELECT sp.rank, sp.name, ds.category, round((ds.enrollment/ds.total_enrollment)*100) as percent_minor, round((early_career_pay/mid_career_pay)*100) as increase_salary FROM university.salary_potential sp
