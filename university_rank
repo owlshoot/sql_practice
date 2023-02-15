@@ -118,4 +118,208 @@ limit 4;
 +-----------------------+---------------+------------+---------+---------------+----------------+------------------+----------------+----------------------+--------------------+----------+------------+
 
 
+#Query to find the all the community colleges for income levels under $30,000 
+SELECT name, campus, total_price, income_lvl
+FROM university.tuition_income
+WHERE year = 2018 
+AND income_lvl = '0 to 30,000' 
+AND campus = 'Off Campus' 
+AND name LIKE '%community%' 
+GROUP BY name, campus, total_price
+ORDER BY total_price;
+
++--------------------------------------------------------+------------+-------------+-------------+
+| name                                                   | campus     | total_price | income_lvl  |
++--------------------------------------------------------+------------+-------------+-------------+
+| Eastern Gateway Community College                      | Off Campus |        9340 | 0 to 30,000 |
+| Halifax Community College                              | Off Campus |       10758 | 0 to 30,000 |
+| Lorain County Community College                        | Off Campus |       11232 | 0 to 30,000 |
+| New River Community and Technical College              | Off Campus |       12536 | 0 to 30,000 |
+| Luna Community College                                 | Off Campus |       12644 | 0 to 30,000 |
+| West Virginia Northern Community College               | Off Campus |       12763 | 0 to 30,000 |
+| Roanoke-Chowan Community College                       | Off Campus |       12767 | 0 to 30,000 |
+| Walters State Community College                        | Off Campus |       12824 | 0 to 30,000 |
+| Keweenaw Bay Ojibwa Community College                  | Off Campus |       13075 | 0 to 30,000 |
+| Cincinnati State Technical and Community College       | Off Campus |       13318 | 0 to 30,000 |
+| Southern State Community College                       | Off Campus |       13572 | 0 to 30,000 |
+| Sinclair Community College                             | Off Campus |       13579 | 0 to 30,000 |
+| Laramie County Community College                       | Off Campus |       13626 | 0 to 30,000 |
+| Pamlico Community College                              | Off Campus |       13631 | 0 to 30,000 |
+| Motlow State Community College                         | Off Campus |       13695 | 0 to 30,000 |
+| Cuyahoga Community College District                    | Off Campus |       13862 | 0 to 30,000 |
+| Owens Community College                                | Off Campus |       13970 | 0 to 30,000 |
+| Martin Community College                               | Off Campus |       14086 | 0 to 30,000 |
+| Mountain Empire Community College                      | Off Campus |       14110 | 0 to 30,000 |
+| Cankdeska Cikana Community College                     | Off Campus |       14250 | 0 to 30,000 |
+| Virginia Highlands Community College                   | Off Campus |       14310 | 0 to 30,000 |
+| Roane State Community College                          | Off Campus |       14363 | 0 to 30,000 |
+| Butler County Community College                        | Off Campus |       14450 | 0 to 30,000 |
+| Wytheville Community College                           | Off Campus |       14465 | 0 to 30,000 |
+| Eastern West Virginia Community and Technical College  | Off Campus |       14523 | 0 to 30,000 |
+| Tohono O'Odham Community College                       | Off Campus |       14554 | 0 to 30,000 |
+| Southwest Virginia Community College                   | Off Campus |       14603 | 0 to 30,000 |
+| Wilkes Community College                               | Off Campus |       14778 | 0 to 30,000 |
+| James Sprunt Community College                         | Off Campus |       14788 | 0 to 30,000 |
+| Nash Community College                                 | Off Campus |       14832 | 0 to 30,000 |
+| Washington State Community College                     | Off Campus |       14837 | 0 to 30,000 |
+| Tillamook Bay Community College                        | Off Campus |       14853 | 0 to 30,000 |
+| McDowell Technical Community College                   | Off Campus |       14894 | 0 to 30,000 |
+| Bay Mills Community College                            | Off Campus |       14962 | 0 to 30,000 |
+| Southern West Virginia Community and Technical College | Off Campus |       14992 | 0 to 30,000 |
+| Clark State Community College                          | Off Campus |       15024 | 0 to 30,000 |
+| Richmond Community College                             | Off Campus |       15056 | 0 to 30,000 |
+| Owensboro Community and Technical College              | Off Campus |       15073 | 0 to 30,000 |
+| Piedmont Community College                             | Off Campus |       15204 | 0 to 30,000 |
+| Vance-Granville Community College                      | Off Campus |       15342 | 0 to 30,000 |
+| Mountwest Community and Technical College              | Off Campus |       15509 | 0 to 30,000 |
+| Rowan-Cabarrus Community College                       | Off Campus |       15526 | 0 to 30,000 |
+| Montgomery Community College                           | Off Campus |       15600 | 0 to 30,000 |
+| Columbus State Community College                       | Off Campus |       15609 | 0 to 30,000 |
+| Cleveland State Community College                      | Off Campus |       15612 | 0 to 30,000 |
+| Rockingham Community College                           | Off Campus |       15616 | 0 to 30,000 |
+| Lakeland Community College                             | Off Campus |       15623 | 0 to 30,000 |
+| New River Community College                            | Off Campus |       15717 | 0 to 30,000 |
+| Lenoir Community College                               | Off Campus |       15824 | 0 to 30,000 |
+| BridgeValley Community & Technical College             | Off Campus |       15862 | 0 to 30,000 |
+| Eastern Shore Community College                        | Off Campus |       15912 | 0 to 30,000 |
+| Carroll Community College                              | Off Campus |       15988 | 0 to 30,000 |
+| Tri-County Community College                           | Off Campus |       16178 | 0 to 30,000 |
+| Southwest Tennessee Community College                  | Off Campus |       16265 | 0 to 30,000 |
+| Pellissippi State Community College                    | Off Campus |       16276 | 0 to 30,000 |
+| Blue Ridge Community and Technical College             | Off Campus |       16439 | 0 to 30,000 |
+| Southern Union State Community College                 | Off Campus |       16440 | 0 to 30,000 |
+| Northwest State Community College                      | Off Campus |       16499 | 0 to 30,000 |
+| Lehigh Carbon Community College                        | Off Campus |       16550 | 0 to 30,000 |
+| Clovis Community College                               | Off Campus |       16576 | 0 to 30,000 |
+| Pennsylvania Highlands Community College               | Off Campus |       16630 | 0 to 30,000 |
+| Chemeketa Community College                            | Off Campus |       16650 | 0 to 30,000 |
+| San Jacinto Community College                          | Off Campus |       16664 | 0 to 30,000 |
+| Treasure Valley Community College                      | Off Campus |       16703 | 0 to 30,000 |
+| Alvin Community College                                | Off Campus |       16729 | 0 to 30,000 |
+| Wayne Community College                                | Off Campus |       16765 | 0 to 30,000 |
+| Fond du Lac Tribal and Community College               | Off Campus |       16811 | 0 to 30,000 |
+| Southwestern Community College                         | Off Campus |       16913 | 0 to 30,000 |
+| Chattanooga State Community College                    | Off Campus |       16963 | 0 to 30,000 |
+| McLennan Community College                             | Off Campus |       17004 | 0 to 30,000 |
+| Edison State Community College                         | Off Campus |       17108 | 0 to 30,000 |
+| Dyersburg State Community College                      | Off Campus |       17120 | 0 to 30,000 |
+| Southeastern Community College                         | Off Campus |       17145 | 0 to 30,000 |
+| Pitt Community College                                 | Off Campus |       17180 | 0 to 30,000 |
+| St Charles Community College                           | Off Campus |       17188 | 0 to 30,000 |
+| Western Wyoming Community College                      | Off Campus |       17223 | 0 to 30,000 |
+| Redlands Community College                             | Off Campus |       17275 | 0 to 30,000 |
+| J Sargeant Reynolds Community College                  | Off Campus |       17338 | 0 to 30,000 |
+| Laredo Community College                               | Off Campus |       17429 | 0 to 30,000 |
+| Pierpont Community and Technical College               | Off Campus |       17442 | 0 to 30,000 |
+| Mt Hood Community College                              | Off Campus |       17546 | 0 to 30,000 |
+| Oklahoma City Community College                        | Off Campus |       17607 | 0 to 30,000 |
+| Guilford Technical Community College                   | Off Campus |       17668 | 0 to 30,000 |
+| Turtle Mountain Community College                      | Off Campus |       17674 | 0 to 30,000 |
+| Western Piedmont Community College                     | Off Campus |       17677 | 0 to 30,000 |
+| Central Virginia Community College                     | Off Campus |       17688 | 0 to 30,000 |
+| Lane Community College                                 | Off Campus |       17724 | 0 to 30,000 |
+| Warren County Community College                        | Off Campus |       17730 | 0 to 30,000 |
+| Spokane Falls Community College                        | Off Campus |       17866 | 0 to 30,000 |
+| Spokane Community College                              | Off Campus |       17866 | 0 to 30,000 |
+| Southwestern Oregon Community College                  | Off Campus |       17867 | 0 to 30,000 |
+| Virginia Western Community College                     | Off Campus |       17877 | 0 to 30,000 |
+| Patrick Henry Community College                        | Off Campus |       17896 | 0 to 30,000 |
+| Trinity Valley Community College                       | Off Campus |       17946 | 0 to 30,000 |
+| Randolph Community College                             | Off Campus |       17981 | 0 to 30,000 |
+| El Paso Community College                              | Off Campus |       17989 | 0 to 30,000 |
+| Piedmont Virginia Community College                    | Off Campus |       18010 | 0 to 30,000 |
+| White Earth Tribal and Community College               | Off Campus |       18018 | 0 to 30,000 |
+| Northeast State Community College                      | Off Campus |       18031 | 0 to 30,000 |
+| Walla Walla Community College                          | Off Campus |       18054 | 0 to 30,000 |
+| Haywood Community College                              | Off Campus |       18062 | 0 to 30,000 |
+| Linn-Benton Community College                          | Off Campus |       18107 | 0 to 30,000 |
+| Northeast Texas Community College                      | Off Campus |       18159 | 0 to 30,000 |
+| Houston Community College                              | Off Campus |       18200 | 0 to 30,000 |
+| Terra State Community College                          | Off Campus |       18254 | 0 to 30,000 |
+| Rogue Community College                                | Off Campus |       18282 | 0 to 30,000 |
+| Tacoma Community College                               | Off Campus |       18286 | 0 to 30,000 |
+| Wake Technical Community College                       | Off Campus |       18290 | 0 to 30,000 |
+| River Parishes Community College                       | Off Campus |       18291 | 0 to 30,000 |
+| Robeson Community College                              | Off Campus |       18293 | 0 to 30,000 |
+| Umpqua Community College                               | Off Campus |       18306 | 0 to 30,000 |
+| Rappahannock Community College                         | Off Campus |       18320 | 0 to 30,000 |
+| Klamath Community College                              | Off Campus |       18331 | 0 to 30,000 |
+| Luzerne County Community College                       | Off Campus |       18360 | 0 to 30,000 |
+| Louisiana Delta Community College                      | Off Campus |       18370 | 0 to 30,000 |
+| South Puget Sound Community College                    | Off Campus |       18433 | 0 to 30,000 |
+| Surry Community College                                | Off Campus |       18490 | 0 to 30,000 |
+| Clatsop Community College                              | Off Campus |       18525 | 0 to 30,000 |
+| York County Community College                          | Off Campus |       18530 | 0 to 30,000 |
+| Big Bend Community College                             | Off Campus |       18531 | 0 to 30,000 |
+| Southside Virginia Community College                   | Off Campus |       18567 | 0 to 30,000 |
+| Clackamas Community College                            | Off Campus |       18594 | 0 to 30,000 |
+| Everett Community College                              | Off Campus |       18665 | 0 to 30,000 |
+| Lac Courte Oreilles Ojibwa Community College           | Off Campus |       18690 | 0 to 30,000 |
+| Shoreline Community College                            | Off Campus |       18693 | 0 to 30,000 |
+| Columbia Gorge Community College                       | Off Campus |       18702 | 0 to 30,000 |
+| Dabney S Lancaster Community College                   | Off Campus |       18725 | 0 to 30,000 |
+| Lord Fairfax Community College                         | Off Campus |       18749 | 0 to 30,000 |
+| Frontier Community College                             | Off Campus |       18764 | 0 to 30,000 |
+| John Tyler Community College                           | Off Campus |       18810 | 0 to 30,000 |
+| Blue Mountain Community College                        | Off Campus |       18895 | 0 to 30,000 |
+| Whatcom Community College                              | Off Campus |       18921 | 0 to 30,000 |
+| Germanna Community College                             | Off Campus |       18923 | 0 to 30,000 |
+| Edmonds Community College                              | Off Campus |       18956 | 0 to 30,000 |
+| Johnston Community College                             | Off Campus |       18956 | 0 to 30,000 |
+| Collin County Community College District               | Off Campus |       19064 | 0 to 30,000 |
+| Paul D Camp Community College                          | Off Campus |       19128 | 0 to 30,000 |
+| Community College of Vermont                           | Off Campus |       19202 | 0 to 30,000 |
+| Salt Lake Community College                            | Off Campus |       19383 | 0 to 30,000 |
+| Mayland Community College                              | Off Campus |       19450 | 0 to 30,000 |
+| Tulsa Community College                                | Off Campus |       19613 | 0 to 30,000 |
+| Estrella Mountain Community College                    | Off Campus |       19622 | 0 to 30,000 |
+| Chandler-Gilbert Community College                     | Off Campus |       19622 | 0 to 30,000 |
+| Paradise Valley Community College                      | Off Campus |       19622 | 0 to 30,000 |
+| Suffolk County Community College                       | Off Campus |       19680 | 0 to 30,000 |
+| Danville Community College                             | Off Campus |       19706 | 0 to 30,000 |
+| South Louisiana Community College                      | Off Campus |       19815 | 0 to 30,000 |
+| Baton Rouge Community College                          | Off Campus |       19831 | 0 to 30,000 |
+| Community College of Rhode Island                      | Off Campus |       19970 | 0 to 30,000 |
+| Sandhills Community College                            | Off Campus |       20188 | 0 to 30,000 |
+| Isothermal Community College                           | Off Campus |       20191 | 0 to 30,000 |
+| Westmoreland County Community College                  | Off Campus |       20228 | 0 to 30,000 |
+| Stanly Community College                               | Off Campus |       20228 | 0 to 30,000 |
+| Columbia State Community College                       | Off Campus |       20267 | 0 to 30,000 |
+| Nashville State Community College                      | Off Campus |       20272 | 0 to 30,000 |
+| Heartland Community College                            | Off Campus |       20290 | 0 to 30,000 |
+| NorthWest Arkansas Community College                   | Off Campus |       20317 | 0 to 30,000 |
+| Community College of Beaver County                     | Off Campus |       20567 | 0 to 30,000 |
+| Thomas Nelson Community College                        | Off Campus |       20666 | 0 to 30,000 |
+| Volunteer State Community College                      | Off Campus |       20894 | 0 to 30,000 |
+| Community College of Allegheny County                  | Off Campus |       21021 | 0 to 30,000 |
+| Jackson State Community College                        | Off Campus |       21027 | 0 to 30,000 |
+| Copper Mountain Community College                      | Off Campus |       21056 | 0 to 30,000 |
+| Woodland Community College                             | Off Campus |       21068 | 0 to 30,000 |
+| Tidewater Community College                            | Off Campus |       21089 | 0 to 30,000 |
+| Central Oregon Community College                       | Off Campus |       21351 | 0 to 30,000 |
+| Mitchell Community College                             | Off Campus |       21423 | 0 to 30,000 |
+| Spartanburg Community College                          | Off Campus |       21558 | 0 to 30,000 |
+| Sussex County Community College                        | Off Campus |       21593 | 0 to 30,000 |
+| Bucks County Community College                         | Off Campus |       21623 | 0 to 30,000 |
+| Portland Community College                             | Off Campus |       21679 | 0 to 30,000 |
+| Oregon Coast Community College                         | Off Campus |       21786 | 0 to 30,000 |
+| Montgomery County Community College                    | Off Campus |       21840 | 0 to 30,000 |
+| Coconino Community College                             | Off Campus |       22054 | 0 to 30,000 |
+| Community College of Baltimore County                  | Off Campus |       22111 | 0 to 30,000 |
+| Northern Virginia Community College                    | Off Campus |       22220 | 0 to 30,000 |
+| Harrisburg Area Community College                      | Off Campus |       22444 | 0 to 30,000 |
+| Community College of Philadelphia                      | Off Campus |       22529 | 0 to 30,000 |
+| Sampson Community College                              | Off Campus |       23083 | 0 to 30,000 |
+| Wilson Community College                               | Off Campus |       23422 | 0 to 30,000 |
+| Blue Ridge Community College                           | Off Campus |       23552 | 0 to 30,000 |
+| Delaware County Community College                      | Off Campus |       23855 | 0 to 30,000 |
+| Northampton County Area Community College              | Off Campus |       24964 | 0 to 30,000 |
+| Community Christian College                            | Off Campus |       25323 | 0 to 30,000 |
+| Hawaii Community College                               | Off Campus |       25906 | 0 to 30,000 |
+| Alamance Community College                             | Off Campus |       26131 | 0 to 30,000 |
+| Austin Community College District                      | Off Campus |       26526 | 0 to 30,000 |
+| Reading Area Community College                         | Off Campus |       27200 | 0 to 30,000 |
+| Stella and Charles Guttman Community College           | Off Campus |       28225 | 0 to 30,000 |
++--------------------------------------------------------+------------+-------------+-------------+
+
 
