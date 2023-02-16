@@ -128,3 +128,44 @@ limit 20;
 | Santa Clara University                         |         134700 |          66621 |              66621 |            200 |
 200 | yes               | yes                |
 +------------------------------------------------+----------------+----------------+--------------------+----------------+-----------------+-------------------+--------------------+
+
+
+#Find universities between the year 2010 - 2018 where the in state total is less than the average in state total
+SELECT name, year, in_state_total, avg_in_state_total, out_of_state_total, avg_out_of_state_total
+FROM (
+  SELECT tc.name, year, in_state_total, AVG(in_state_total) OVER (PARTITION BY year) AS avg_in_state_total, out_of_state_total,
+    AVG(out_of_state_total) OVER (PARTITION BY year) AS avg_out_of_state_total
+  FROM university.tuition_cost tc
+  LEFT JOIN tuition_income t ON t.name = tc.name
+  WHERE year IS NOT NULL
+  GROUP BY tc.name, year, in_state_total, out_of_state_total
+  ORDER BY year ASC
+) t
+WHERE in_state_total < avg_in_state_total
+Limit 20;
++------------------------------------------------------+------+----------------+--------------------+--------------------+------------------------+
+| name                                                 | year | in_state_total | avg_in_state_total | out_of_state_total | avg_out_of_state_total |
++------------------------------------------------------+------+----------------+--------------------+--------------------+------------------------+
+| Eastern Gateway Community College                    | 2010 |           4040 |         18711.1543 |               7280 |             22349.5022 |
+| Hocking College                                      | 2010 |          12950 |         18711.1543 |              17350 |             22349.5022 |
+| Good Samaritan College of Nursing and Health Science | 2010 |          15959 |         18711.1543 |              15959 |             22349.5022 |
+| Franklin University                                  | 2010 |          15805 |         18711.1543 |              15805 |             22349.5022 |
+| Edison State Community College                       | 2010 |           4699 |         18711.1543 |               8608 |             22349.5022 |
+| Columbus State Community College                     | 2010 |           4638 |         18711.1543 |               9591 |             22349.5022 |
+| Clark State Community College                        | 2010 |           4480 |         18711.1543 |               8420 |             22349.5022 |
+| Cincinnati State Technical and Community College     | 2010 |           5242 |         18711.1543 |              10001 |             22349.5022 |
+| Chatfield College                                    | 2010 |          12184 |         18711.1543 |              12184 |             22349.5022 |
+| Central State University                             | 2010 |          16578 |         18711.1543 |              18578 |             22349.5022 |
+| Central Ohio Technical College                       | 2010 |           4536 |         18711.1543 |               7296 |             22349.5022 |
+| Belmont College                                      | 2010 |           4973 |         18711.1543 |               8070 |             22349.5022 |
+| Aultman College of Nursing and Health Sciences       | 2010 |          18510 |         18711.1543 |              18510 |             22349.5022 |
+| Allegheny Wesleyan College                           | 2010 |          10400 |         18711.1543 |              10400 |             22349.5022 |
+| United Tribes Technical College                      | 2010 |           9566 |         18711.1543 |               9566 |             22349.5022 |
+| Sitting Bull College                                 | 2010 |           3980 |         18711.1543 |               3980 |             22349.5022 |
+| Dakota College at Bottineau                          | 2010 |          11778 |         18711.1543 |              13654 |             22349.5022 |
+| University of North Dakota                           | 2010 |          17669 |         18711.1543 |              29733 |             22349.5022 |
+| Mayville State University                            | 2010 |          14506 |         18711.1543 |              17239 |             22349.5022 |
+| Cankdeska Cikana Community College                   | 2010 |           4050 |         18711.1543 |               4050 |             22349.5022 |
++------------------------------------------------------+------+----------------+--------------------+--------------------+------------------------+
+
+
